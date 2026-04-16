@@ -8,8 +8,7 @@ public class User {
     private String id;
     private List<Book> issuedBooks;
     private int daysBorrowed;
-    
-    // Constants for fine calculation
+
     private static final int ALLOWED_DAYS = 7;
     private static final double FINE_PER_DAY = 2.0;
 
