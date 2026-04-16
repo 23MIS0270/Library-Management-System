@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/23MIS0270/Library-Management-System.git'
+                git 'https://github.com/23MIS0270/Library-Management-System'
             }
         }
 
