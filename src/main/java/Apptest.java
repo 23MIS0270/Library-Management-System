@@ -42,4 +42,9 @@ public class User {
         double fine = calculateFine();
         System.out.println("Total Fine: $" + fine + (fine > 0 ? " (Late)" : " (On time)"));
     }
+
+    System.out.println("-----------------------------------------");
+    System.out.println("---------BUILD SUCCESSFULL---------------");
+    System.out.println("-----------------------------------------");
+    
 }
