@@ -1,1 +1,19 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: generic-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: generic
+  template:
+    metadata:
+      labels:
+        app: generic
+    spec:
+      containers:
+      - name: generic-container
+        image: yourdockerhub/generic-app
+        ports:
+- containerPort: 8080
