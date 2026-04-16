@@ -1,1 +1,42 @@
+pipeline {
+    agent any
 
+    tools {
+        maven 'Maven_3_x' 
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/23MIS0270/Library-Management-System.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and Testing Successful!'
+        }
+        failure {
+            echo 'Build Failed. Please check the logs.'
+        }
+    }
+}
