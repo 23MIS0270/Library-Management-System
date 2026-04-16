@@ -1,42 +1,43 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven_3_x' 
-    }
-
     stages {
-        stage('Checkout') {
+
+        stage('Pull Code') {
             steps {
-                git 'https://github.com/23MIS0270/Library-Management-System'
+                git branch: 'main', url: 'https://github.com/23MIS0270/Library-Management-System.git'
             }
         }
 
-        stage('Build') {
+        stage('Compile') {
             steps {
-                sh 'mvn clean compile'
+                bat 'javac src/main/java/App.java'
             }
         }
 
-        stage('Test') {
+        stage('Run Main Program') {
             steps {
-                sh 'mvn test'
+                bat 'java -cp src/main/java App'
             }
         }
 
-        stage('Package') {
+        stage('Run Test') {
             steps {
-                sh 'mvn package'
+                bat 'javac src/test/java/App.java'
+                bat 'java -cp src/test/java App'
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Build and Testing Successful!'
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t generic-app .'
+            }
         }
-        failure {
-            echo 'Build Failed. Please check the logs.'
+
+        stage('Docker Run') {
+            steps {
+                bat 'docker run generic-app'
+            }
         }
     }
 }
