@@ -23,8 +23,8 @@ pipeline {
 
         stage('Run Test') {
             steps {
-                bat 'javac src/test/java/App.java'
-                bat 'java -cp src/test/java App'
+                bat 'javac src/test/java/Apptest.java'
+                bat 'java -cp src/test/java Apptest'
             }
         }
 
